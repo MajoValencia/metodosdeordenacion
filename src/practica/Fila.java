@@ -18,6 +18,20 @@ public class Fila {
     /**
      * @return the institucion
      */
+    public Fila(String institucion, String nombre, String primerAp, String segundoAp, String telefono, String tipoPers, String nombreCargo, String nombreCargoSup, 
+            String unidadAdmin, String clavePuesto, String nombrePuesto, String tipoVacancia, String telefonoDir, String conmutador, String ext, String fax, String correo){
+        this.institucion=institucion;
+        this.nombre=nombre;
+        this.primerAp=primerAp;
+        this.segundoAp=segundoAp;
+        this.telefono=telefono;
+        this.tipoPers=tipoPers;
+        this.nombreCargo=nombreCargo;
+        this.nombreCargoSup=nombreCargoSup;
+        this.unidadAdmin=unidadAdmin;
+        this.clavePuesto=clavePuesto;
+        //FALTAN !!!!!!!!!!!
+    }
     public String getInstitucion() {
         return institucion;
     }
