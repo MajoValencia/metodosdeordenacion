@@ -7,25 +7,27 @@
 package practica;
 import java.io.*;
 import com.csvreader.CsvReader;
+import java.net.URL;
 /**
  *
  * @author Alumnos
  */
 public class Secretaria {
-    public static void importar(){
-        Fila[] arreglo = new Fila[94331]; 
+    public static void importar(Fila[] arreglo){
+         
         String institucion, nombre, primerAp, segundoAp, telefono, tipoPers, nombreCargo, nombreCargoSup, 
             unidadAdmin, clavePuesto, nombrePuesto, tipoVacancia, telefonoDir, conmutador, ext, fax, correo;
-        
+        String userDir = System.getProperty("user.dir");
         try{
-         CsvReader datos_import = new CsvReader("C:\\Users\\Alumnos\\Desktop\\directoriopot 2.csv");  
+         
+         CsvReader datos_import = new CsvReader( System.getProperty("user.dir")+"/src/directoriopot 2.csv");  
          datos_import.readHeaders();
-         int i=-1;
+         int i=0;
          
          while (datos_import.readRecord()){
-          if(i==-1){
+          
               
-          }else{
+          
               institucion=datos_import.get(0);
               nombre=datos_import.get(1);
               primerAp=datos_import.get(2);
@@ -43,8 +45,7 @@ public class Secretaria {
               ext=datos_import.get(14);
               fax=datos_import.get(15);
               correo=datos_import.get(16);
-              
-          }
+              arreglo[i]=new Fila(institucion, nombre, primerAp, segundoAp, telefono, tipoPers, nombreCargo, nombreCargoSup, unidadAdmin, clavePuesto, nombrePuesto, tipoVacancia, telefonoDir, conmutador, ext, fax, correo);
           i++;
          }
         }catch (Exception e){

@@ -267,6 +267,9 @@ public class Fila {
         this.correo = correo;
     }
 
-    
+    public String toString(){
+        return institucion+ nombre+ primerAp+ segundoAp+ telefono+ tipoPers+ nombreCargo+ nombreCargoSup+ 
+            unidadAdmin+ clavePuesto+ nombrePuesto+ tipoVacancia+ telefonoDir+ conmutador+ ext+ fax+ correo;
+    }
 
 }
