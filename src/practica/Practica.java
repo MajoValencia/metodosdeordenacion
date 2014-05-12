@@ -38,7 +38,7 @@ public class Practica {
                 criterio="nombre";
                 break;
         }
-        System.out.println(criterio);
+        
         quicksort(arreglo, 0, 94330, criterio);
         for (int i = 0; i < arreglo.length; i++) {
             System.out.println(arreglo[i]);
