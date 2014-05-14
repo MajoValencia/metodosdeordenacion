@@ -30,7 +30,14 @@ public class Fila {
         this.nombreCargoSup=nombreCargoSup;
         this.unidadAdmin=unidadAdmin;
         this.clavePuesto=clavePuesto;
-        //FALTAN !!!!!!!!!!!
+        this.nombrePuesto= nombrePuesto;
+        this.tipoVacancia= tipoVacancia;
+        this.telefonoDir=telefonoDir;
+        this.conmutador=conmutador;
+        this.ext=ext;
+        this.fax=fax;
+        this.correo=correo;
+
     }
     public String getInstitucion() {
         return institucion;

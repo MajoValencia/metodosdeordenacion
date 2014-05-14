@@ -20,7 +20,8 @@ public class Practica {
     public static void main(String[] args) {
         Scanner sc= new Scanner(System.in);
         Fila[] arreglo = new Fila[94331];
-        Secretaria.importar(arreglo);
+        Secretaria secretaria= new Secretaria();
+        secretaria.importar(arreglo);
         System.out.println("Seleccione una opcion para ordenar:\n 1)Nombre \n 2)Apellido Paterno \n 3)Clave Puesto");
         int decicion=sc.nextInt();
         String criterio="";
@@ -40,10 +41,8 @@ public class Practica {
         }
         
         quicksort(arreglo, 0, 94330, criterio);
-        for (int i = 0; i < arreglo.length; i++) {
-            System.out.println(arreglo[i]);
-            
-        }
+        
+        secretaria.exportar(arreglo);
         // TODO code application logic here
     }
     

@@ -5,15 +5,18 @@
  */
 
 package practica;
-import java.io.*;
+
 import com.csvreader.CsvReader;
-import java.net.URL;
+import com.csvreader.CsvWriter;
+import java.io.File;
+import java.io.FileWriter;
 /**
  *
  * @author Alumnos
  */
 public class Secretaria {
-    public static void importar(Fila[] arreglo){
+    private String[] cabecera;
+    public  void importar(Fila[] arreglo){
          
         String institucion, nombre, primerAp, segundoAp, telefono, tipoPers, nombreCargo, nombreCargoSup, 
             unidadAdmin, clavePuesto, nombrePuesto, tipoVacancia, telefonoDir, conmutador, ext, fax, correo;
@@ -22,6 +25,7 @@ public class Secretaria {
          
          CsvReader datos_import = new CsvReader( System.getProperty("user.dir")+"/src/directoriopot 2.csv");  
          datos_import.readHeaders();
+         cabecera=datos_import.getHeaders();
          int i=0;
          
          while (datos_import.readRecord()){
@@ -49,6 +53,47 @@ public class Secretaria {
           i++;
          }
         }catch (Exception e){
+            System.out.println(e.toString());
+        }
+    }
+    
+    public void exportar(Fila[] arreglo){
+        String userDir = System.getProperty("user.dir");
+        try{
+            String file=System.getProperty("user.dir")+"/src/ordenado.csv";
+            boolean alreadyExists = new File(file).exists();
+         
+        if(alreadyExists){
+            File ficheroUsuarios = new File(file);
+            ficheroUsuarios.delete();
+        }
+        
+        CsvWriter csvOutput = new CsvWriter(new FileWriter(file, true), ',');
+            for (int i = 0; i < cabecera.length; i++) {
+                csvOutput.write(cabecera[i]);
+            }csvOutput.endRecord();
+            
+            for (int i = 0; i < arreglo.length; i++) {
+                csvOutput.write(arreglo[i].getInstitucion());
+                csvOutput.write(arreglo[i].getNombre());
+                csvOutput.write(arreglo[i].getPrimerAp());
+                csvOutput.write(arreglo[i].getSegundoAp());
+                csvOutput.write(arreglo[i].getTelefono());
+                csvOutput.write(arreglo[i].getTipoPers());
+                csvOutput.write(arreglo[i].getNombreCargo());
+                csvOutput.write(arreglo[i].getNombreCargoSup());
+                csvOutput.write(arreglo[i].getUnidadAdmin());
+                csvOutput.write(arreglo[i].getClavePuesto());
+                csvOutput.write(arreglo[i].getNombrePuesto());
+                csvOutput.write(arreglo[i].getTipoVacancia());
+                csvOutput.write(arreglo[i].getTelefonoDir());
+                csvOutput.write(arreglo[i].getConmutador());
+                csvOutput.write(arreglo[i].getExt());
+                csvOutput.write(arreglo[i].getFax());
+                csvOutput.write(arreglo[i].getCorreo());
+            }   
+            csvOutput.close();
+        }catch(Exception e){
             System.out.println(e.toString());
         }
     }
