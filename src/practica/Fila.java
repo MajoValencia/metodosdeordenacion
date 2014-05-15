@@ -275,7 +275,7 @@ public class Fila {
     }
 
     public String toString(){
-        return institucion+ nombre+ primerAp+ segundoAp+ telefono+ tipoPers+ nombreCargo+ nombreCargoSup+ 
+        return institucion+"||"+ nombre+ primerAp+ segundoAp+ telefono+ tipoPers+ nombreCargo+ nombreCargoSup+ 
             unidadAdmin+ clavePuesto+ nombrePuesto+ tipoVacancia+ telefonoDir+ conmutador+ ext+ fax+ correo;
     }
 

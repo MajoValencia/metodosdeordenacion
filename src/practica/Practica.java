@@ -39,9 +39,8 @@ public class Practica {
                 criterio="nombre";
                 break;
         }
-        
         quicksort(arreglo, 0, 94330, criterio);
-        
+        System.out.println("terminado");
         secretaria.exportar(arreglo);
         // TODO code application logic here
     }
@@ -52,8 +51,8 @@ public class Practica {
         int j = der;
         Fila aux;
 
-        while (i < j) {
-            while (comparar(criterio, A[i], pivote)<=0 && i < j) {
+        while (i <= j) {
+            while (comparar(criterio, A[i], pivote)<0) {
                 i++;
             }
             while (comparar(criterio,A[j], pivote)>0) {
@@ -63,15 +62,17 @@ public class Practica {
                 aux = A[i];
                 A[i] = A[j];
                 A[j] = aux;
+                i++;
+                j--;
             }
         }
         A[izq] = A[j];
         A[j] = pivote;
         if (izq < j - 1) {
-            quicksort(A, izq, j - 1,criterio);
+            quicksort(A, izq, j ,criterio);
         }
         if (j + 1 < der) {
-            quicksort(A, j + 1, der,criterio);
+            quicksort(A, i, der,criterio);
         }
     }
 

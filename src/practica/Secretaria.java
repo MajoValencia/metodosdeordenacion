@@ -10,12 +10,14 @@ import com.csvreader.CsvReader;
 import com.csvreader.CsvWriter;
 import java.io.File;
 import java.io.FileWriter;
+import java.nio.charset.Charset;
 /**
  *
  * @author Alumnos
  */
 public class Secretaria {
     private String[] cabecera;
+    private boolean cargado=false;
     public  void importar(Fila[] arreglo){
          
         String institucion, nombre, primerAp, segundoAp, telefono, tipoPers, nombreCargo, nombreCargoSup, 
@@ -29,9 +31,6 @@ public class Secretaria {
          int i=0;
          
          while (datos_import.readRecord()){
-          
-              
-          
               institucion=datos_import.get(0);
               nombre=datos_import.get(1);
               primerAp=datos_import.get(2);
@@ -52,6 +51,8 @@ public class Secretaria {
               arreglo[i]=new Fila(institucion, nombre, primerAp, segundoAp, telefono, tipoPers, nombreCargo, nombreCargoSup, unidadAdmin, clavePuesto, nombrePuesto, tipoVacancia, telefonoDir, conmutador, ext, fax, correo);
           i++;
          }
+            setCargado(true);
+         datos_import.close();
         }catch (Exception e){
             System.out.println(e.toString());
         }
@@ -67,8 +68,8 @@ public class Secretaria {
             File ficheroUsuarios = new File(file);
             ficheroUsuarios.delete();
         }
-        
-        CsvWriter csvOutput = new CsvWriter(new FileWriter(file, true), ',');
+        Charset cs= Charset.forName("UTF-8");
+        CsvWriter csvOutput = new CsvWriter(file, ',',cs );
             for (int i = 0; i < cabecera.length; i++) {
                 csvOutput.write(cabecera[i]);
             }csvOutput.endRecord();
@@ -91,10 +92,25 @@ public class Secretaria {
                 csvOutput.write(arreglo[i].getExt());
                 csvOutput.write(arreglo[i].getFax());
                 csvOutput.write(arreglo[i].getCorreo());
+                csvOutput.endRecord();
             }   
             csvOutput.close();
         }catch(Exception e){
             System.out.println(e.toString());
         }
+    }
+
+    /**
+     * @return the cargado
+     */
+    public boolean isCargado() {
+        return cargado;
+    }
+
+    /**
+     * @param cargado the cargado to set
+     */
+    public void setCargado(boolean cargado) {
+        this.cargado = cargado;
     }
 }
